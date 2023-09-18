@@ -1,6 +1,13 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
+from .serializers import *
 
-@api_view()
-def hello_world(request):
-    return Response({"message": "Hello, world!"})
+class IgisokozoViewSet(viewsets.ModelViewSet):
+    queryset = Igisokozo.objects.all()
+    serializer_class = IgisokozoSerializer
+    permission_classes = [AllowAny]
+
+class InyishuIgisokozoViewSet(viewsets.ModelViewSet):
+    queryset = InyishuIgisokozo.objects.all()
+    serializer_class = InyishuIgisokozoSerializer
+    permission_classes = [AllowAny]
