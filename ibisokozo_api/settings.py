@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y=a2=eys1j8-&85-qqnkgd53681dxcklv373+yrrwy5sawyt=6'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'graphene_django',
     'api',
-    'graphql_api'
+    'graphql_api',
+    'corsheaders'
 
 ]
 
@@ -28,6 +29,7 @@ INSTALLED_APPS = [
 #     "SCHEMA": "graphql_api.schema.schema"
 # }
 
+CORS_ALLOW_ALL_ORIGINS = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -36,6 +38,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'ibisokozo_api.urls'
