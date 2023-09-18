@@ -10,7 +10,7 @@ class InyishuIgisokozoSerializer(serializers.ModelSerializer):
     igisokozo = serializers.HyperlinkedRelatedField(
         many=False,
         read_only=True,
-        view_name='inyishu-igisokozo'
+        view_name='igisokozo-detail'
     )
     class Meta:
         model = InyishuIgisokozo
