@@ -1,7 +1,12 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework import routers
+from .views import *
 
+router = routers.DefaultRouter()
+
+router.register("ibisokozo", IgisokozoViewSet)
+router.register("inyishu-igisokozo", InyishuIgisokozoViewSet)
 
 urlpatterns = [
-    path('hello', views.hello_world, name = 'hello'),
+    path('',include(router.urls)),
 ]
