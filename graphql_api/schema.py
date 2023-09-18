@@ -6,21 +6,21 @@ from api.models import Igisokozo, InyishuIgisokozo
 class IgisokozoType(DjangoObjectType):
     class Meta:
         model = Igisokozo
-        fields = "__all__"
+        fields = ("id", "igisokozo", "itariki")
+
 class InyishuIgisokozoType(DjangoObjectType):
     class Meta:
         model = InyishuIgisokozo
-        fields = "__all__"
+        fields = ("id", "igisokozo","inyishu", "itariki")
 
 class Query(graphene.ObjectType):
     ibisokozo_vyose = graphene.List(IgisokozoType)
     inyishu_zyose = graphene.List(InyishuIgisokozoType)
 
     def resolve_ibisokozo_vyose(root, info):
-        # We can easily optimize query count in the resolve method
         return Igisokozo.objects.all()
 
-    def resolve_category_by_name(root, info, name):
+    def resolve_inyishu_zyose(root, info):
         return InyishuIgisokozo.objects.select_related("igisokozo").all()
 
 schema = graphene.Schema(query=Query)
