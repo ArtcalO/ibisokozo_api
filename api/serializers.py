@@ -15,3 +15,8 @@ class InyishuIgisokozoSerializer(serializers.ModelSerializer):
     class Meta:
         model = InyishuIgisokozo
         fields = "__all__"
+
+class IbisokozoCollectedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IbisokozoCollected
+        fields = "__all__"

@@ -10,7 +10,13 @@ class Igisokozo(models.Model):
 	@property
 	def inyishu(self):
 		return InyishuIgisokozo.objects.get(igisokozo=self.id).inyishu
-	
+
+class IbisokozoCollected(models.Model):
+	id = models.BigAutoField(primary_key=True)
+	igisokozo = models.TextField()
+	inyishu = models.TextField()
+	itariki = models.DateTimeField(auto_now=True)
+
 
 class InyishuIgisokozo(models.Model):
 	id = models.BigAutoField(primary_key=True)
