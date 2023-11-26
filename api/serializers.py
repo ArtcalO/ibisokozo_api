@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import Group
-from django.contrib.auth import get_user_model
 
 
 
@@ -19,17 +18,31 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'password', 'groups']  # Add other fields as needed
-        extra_kwargs = {'password': {'write_only': True}}  # Ensure that the password field is write-only
-
+        fields = ['username', 'password', 'first_name', 'last_name', 'email', 'groups'] 
+        extra_kwargs = {'password': {'write_only': True}}  
     def create(self, validated_data):
         groups_data = validated_data.pop('groups', [])
         user = CustomUser.objects.create_user(**validated_data)
         
-        # Set groups using the set() method
         user.groups.set(groups_data)
         
         return user
+ 
+ 
+ 
+class InyishuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inyishu
+        fields = ['id', 'inyishu', 'itariki']
+
+class IkibazoSerializer(serializers.ModelSerializer):
+    inyishu = InyishuSerializer()
+
+    class Meta:
+        model = Ikibazo
+        fields = ['id', 'igisokozo', 'itariki', 'inyishu']
+    
+    
 class IgisokozoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Igisokozo
