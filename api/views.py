@@ -105,6 +105,7 @@ class CheckAnswerViewSet(viewsets.ViewSet):
         user = self.request.user if self.request.user.is_authenticated else None
 
         response_data = {}
+        
 
         if user:
             if selected_answer == correct_answer:
@@ -116,6 +117,12 @@ class CheckAnswerViewSet(viewsets.ViewSet):
                 response_data = {'result': 'Incorrect. Try again!', 'score': user.score}
         else:
             response_data = {'result': 'User not authenticated.', 'score': 0}
+            
+            if selected_answer == correct_answer:
+
+                response_data = {'result': 'Correct!, please authenticate to save your score'}
+            else:
+                response_data = {'result': 'Incorrect. Try again!, please authenticate to save your score'}
 
         return Response(response_data, status=status.HTTP_200_OK)
 
