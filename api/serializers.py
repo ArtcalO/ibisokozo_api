@@ -8,6 +8,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = '__all__'
+        
+        
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['score']
        
 class UserRegistrationSerializer(serializers.ModelSerializer):
     groups = serializers.SlugRelatedField(
