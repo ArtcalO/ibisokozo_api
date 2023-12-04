@@ -112,17 +112,25 @@ class CheckAnswerViewSet(viewsets.ViewSet):
                 user.score += 1
                 user.save()
 
-                response_data = {'result': 'Correct!', 'score': user.score}
+                response_data = {'result': 'Correct!', 'score': user.score, 'correct': True}
             else:
-                response_data = {'result': 'Incorrect. Try again!', 'score': user.score}
+                response_data = {'result': 'Incorrect. Try again!', 'score': user.score, 'correct': False}
         else:
-            response_data = {'result': 'User not authenticated.', 'score': 0}
+            response_data = {'result': 'User not authenticated.', 'score': 0, 'correct': False}
             
             if selected_answer == correct_answer:
 
-                response_data = {'result': 'Correct!, please authenticate to save your score'}
+                response_data = {'result': 'Correct!, please authenticate to save your score', 'correct': True}
             else:
-                response_data = {'result': 'Incorrect. Try again!, please authenticate to save your score'}
+                response_data = {'result': 'Incorrect. Try again!, please authenticate to save your score', 'correct': False}
 
         return Response(response_data, status=status.HTTP_200_OK)
 
+#get score
+class ScoreViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = ScoreSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return CustomUser.objects.filter(id=self.request.user.id)
