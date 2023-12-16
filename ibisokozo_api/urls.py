@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 from api.views import *
 from . import settings
 from rest_framework import routers
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 router = routers.SimpleRouter()
@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/', include("api.urls")),
     path("graphql_api", include("graphql_api.urls")),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/login/', obtain_auth_token, name='obtain_auth_token'),
+
    
 ] 

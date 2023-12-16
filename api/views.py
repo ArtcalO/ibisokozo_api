@@ -22,9 +22,11 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return CustomUser.objects.filter(id=self.request.user.id)
     
+    
+    
 #get users' list 
 class UsersListViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.objects.order_by('-score')
     serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated]
 

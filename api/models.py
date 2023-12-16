@@ -21,6 +21,7 @@ class Inyishu(models.Model):
  
 	def __str__(self):
     		return f"{self.inyishu}"
+  
 
 
 class Ikibazo(models.Model):
