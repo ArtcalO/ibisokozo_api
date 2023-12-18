@@ -34,6 +34,7 @@ class Ikibazo(models.Model):
     		return f"{self.igisokozo}"
 
  
+ ###* THESE THREE TABLES BELOW ARE NOT IN USE
 
 class Igisokozo(models.Model):
 	id = models.BigAutoField(primary_key=True)

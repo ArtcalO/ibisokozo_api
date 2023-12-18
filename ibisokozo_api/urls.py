@@ -20,7 +20,7 @@ router = routers.SimpleRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
     path('api/', include("api.urls")),
     path("graphql_api", include("graphql_api.urls")),
     path('api-auth/', include('rest_framework.urls')),
