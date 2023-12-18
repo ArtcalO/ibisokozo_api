@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'api',
     'graphql_api',
     'corsheaders',
-    'rest_framework_simplejwt'
+    'rest_framework.authtoken'
 
 ]
 
@@ -126,15 +126,21 @@ STATICFILES_DIRS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
-SIMPLE_JWT={
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=200000000),
-}
+# SIMPLE_JWT={
+#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=200000000),
+# }
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.CustomUser'
+# AUTH_TOKEN_MODEL = 'rest_framework.authtoken.models.Token'
+
