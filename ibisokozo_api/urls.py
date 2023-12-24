@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
+
 from api.views import *
 from . import settings
 from rest_framework import routers
@@ -28,3 +29,6 @@ urlpatterns = [
 
    
 ] 
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

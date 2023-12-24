@@ -1,18 +1,15 @@
-
-from datetime import timedelta
-from pathlib import Path
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from a .env file if available
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-SECRET_KEY = 'django-insecure-y=a2=eys1j8-&85-qqnkgd53681dxcklv373+yrrwy5sawyt=6'
 DEBUG = True
 
-
 ALLOWED_HOSTS = ['102.134.108.82', 'localhost', '127.0.0.1']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,15 +23,11 @@ INSTALLED_APPS = [
     'api',
     'graphql_api',
     'corsheaders',
-    'rest_framework.authtoken'
-
+    'rest_framework.authtoken',
 ]
 
-# GRAPHENE = {
-#     "SCHEMA": "graphql_api.schema.schema"
-# }
-
 CORS_ALLOW_ALL_ORIGINS = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "corsheaders.middleware.CorsMiddleware",
@@ -44,11 +37,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    ######################################################3
-    
-    
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
@@ -72,10 +60,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ibisokozo_api.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 
 DATABASES = {
     'default': {
@@ -87,8 +73,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -108,7 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -120,36 +103,49 @@ USE_I18N = True
 
 USE_TZ = True
 
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+# # STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_URL = '/static/'  # or any other path you prefer
+# MEDIA_URL = '/media/'
+# # MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-y=a2=eys1j8-&85-qqnkgd53681dxcklv373+yrrwy5sawyt=6')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # or any other path you prefer
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "media"),
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
-# SIMPLE_JWT={
-#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=200000000),
-# }
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.CustomUser'
-# AUTH_TOKEN_MODEL = 'rest_framework.authtoken.models.Token'
-
