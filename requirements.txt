@@ -19,7 +19,7 @@ graphql-core==3.2.3
 graphql-relay==3.2.0
 gunicorn==21.2.0
 idna==3.4
-ipython==8.19.0
+ipython==7.29.0
 jedi==0.19.1
 matplotlib-inline==0.1.6
 packaging==23.2
