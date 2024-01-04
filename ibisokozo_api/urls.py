@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/', include("api.urls")),
-    path("graphql_api", include("graphql_api.urls")),
+    # path("graphql_api", include("graphql_api.urls")),
     path('api-auth/', include('rest_framework.urls')),
     path('api/login/', obtain_auth_token, name='obtain_auth_token'),
 
