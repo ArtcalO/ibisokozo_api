@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['102.134.108.82', 'localhost', '127.0.0.1', '.awsapprunner.com']
+ALLOWED_HOSTS = ['102.134.108.82', 'localhost', '127.0.0.1', '.awsapprunner.com', 'dushisoft.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
