@@ -45,15 +45,11 @@ class InyishuSerializer(serializers.ModelSerializer):
         
         
 class IkibazoSerializer(serializers.ModelSerializer):
-    inyishu_id = serializers.PrimaryKeyRelatedField(
-        queryset=Inyishu.objects.all(),
-        write_only=True,
-        required=True
-    )
+    inyishu = serializers.StringRelatedField(source='inyishu.inyishu', read_only=True)
 
     class Meta:
         model = Ikibazo
-        fields = ['id', 'igisokozo', 'itariki', 'inyishu_id']
+        fields = ['id', 'igisokozo', 'itariki', 'inyishu']
 
     def create(self, validated_data):
         inyishu_id = validated_data.pop('inyishu_id')
@@ -61,11 +57,11 @@ class IkibazoSerializer(serializers.ModelSerializer):
         # Create the Ikibazo instance
         ikibazo_instance = Ikibazo.objects.create(
             igisokozo=validated_data['igisokozo'],
-            # itariki=validated_data['itariki'],
-            inyishu=inyishu_id,
+            inyishu_id=inyishu_id,
         )
 
         return ikibazo_instance
+
 
 
     
