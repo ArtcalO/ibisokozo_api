@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register("ibisokozo", IgisokozoViewSet)
 router.register("inyishu-igisokozo", InyishuIgisokozoViewSet)
 router.register("collect", IbisokozoCollectedViewSet)
+router.register("leboncoin-scrapped-items", LebonCoinViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),

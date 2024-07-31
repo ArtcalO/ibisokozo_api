@@ -20,3 +20,8 @@ class IbisokozoCollectedSerializer(serializers.ModelSerializer):
     class Meta:
         model = IbisokozoCollected
         fields = "__all__"
+
+class LebonCoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LebonCoin
+        fields = "__all__"

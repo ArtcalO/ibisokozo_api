@@ -16,3 +16,7 @@ class IbisokozoCollectedViewSet(viewsets.ModelViewSet):
     queryset = IbisokozoCollected.objects.all()
     serializer_class = IbisokozoCollectedSerializer
     permission_classes = [AllowAny]
+
+class LebonCoinViewSet(viewsets.ModelViewSet):
+    queryset = LebonCoin.objects.all()
+    serializer_class = LebonCoinSerializer
